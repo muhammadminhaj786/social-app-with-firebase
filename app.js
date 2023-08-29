@@ -1,13 +1,43 @@
+var loader = document.getElementById('preloader')
+window.addEventListener('load',function(){
+    loader.style.display ='none'
+})
+
 import { app, getFirestore, auth, signOut, getDocs, collection, db, getDoc, addDoc, deleteDoc, updateDoc, doc, setDoc, getAuth, serverTimestamp } from "./firebase.js"
 
 console.log(app)
 var allPost = document.querySelector('.allPost')
 window.addEventListener('load',async function(){
     const querySnapshot = await getDocs(collection(db, "blogs"));
-    querySnapshot.forEach((doc) => {
+    querySnapshot.forEach(async (doc) => {
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.id, " => ", doc.data());
-        var data = doc.data()
+        if(!getUser){
+            var data = doc.data()
+            var newCard = `                        <div class="card mt-4">
+            <div class="divImg d-flex">
+                <img src="${data.Image}"  alt="" class="margin ">
+                <p class="margin">${data.fullName}</p>
+            </div>
+            <div class="timeSt mt-3">
+                <p class="margin">${data.timeStamp.toDate()}</p>
+            </div>
+            <div class="details mt-3">
+                <p class="margin">${data.title}</p>
+                <p class="margin"> ${data.desc}</p>
+            </div>
+            <div class="uiImg mt-1 w-100">
+                <img src="${data.filePost}"  height="550px" width="90%" alt="">
+            </div>
+            <div class="applyBtns mt-3 mb-3 container" ">
+                <button class="btn btn-success w-100" onclick="navToLog()" >Apply</button>
+            </div>
+        </div>`
+            allPost.innerHTML += newCard
+        }else{
+            var data = doc.data()
+            console.log(data.postType)
+            console.log(getUser)
             var newCard = `                        <div class="card mt-4">
             <div class="divImg d-flex">
                 <img src="${data.Image}"  alt="" class="margin ">
@@ -27,7 +57,9 @@ window.addEventListener('load',async function(){
                 <button class="btn btn-success w-100 " onclick="Apply('${doc.id}')" >Apply</button>
             </div>
         </div>`
-            allPost.innerHTML += newCard
+            allPost.innerHTML += newCard    
+        }
+      
 
         
 
@@ -65,13 +97,13 @@ if (!getUser){
 
     const userInfo = JSON.parse(localStorage.getItem('users')) 
     //new
-    var myPro = `                <div class="myimg" id="myimgid" style="height: 60px; width: 130px;">
+    var myPro = `                <div class="myimg" id="myimgid" style="height: 80px; width: 130px;">
     <img src="${userInfo.userImage}" alt="" height="100%" width="60%" class="border-radius">
 </div>
 
 <div class="dropdown" id="dropdownid">
     <div class="nameandimg" >
-        <img src="${userInfo.userImage}" alt="" height="100px" width="40%">
+        <img src="${userInfo.userImage}" alt="" height="80px" width="40%">
         <p id="logerName"> ${userInfo.fullName} </p>
     </div>
 
@@ -79,11 +111,6 @@ if (!getUser){
         <li>
             <i class="fa-solid fa-user"></i>
             <p id="my-account"> My Account </p>
-        </li>
-
-        <li>
-            <i class="fa-solid fa-box"></i>
-            <p> My Order </p>
         </li>
 
         <hr>
@@ -129,27 +156,62 @@ let dropdownid = document.getElementById('dropdownid');
 
 }
 //navigiate page my account
+if(!getUser){
+    console.log('no user sign')
+}else{
+    
 mypro.addEventListener('click',function(){
     window.location.replace('./mypro.html')
 })
 
+}
 // <--------------------------end----------->
 
 
 // <-----------logout------->
 console.log('mna')
+var temp = 'not'
+var tempId = 'myid'
 async function Apply(id){
-    var myUser = JSON.parse(localStorage.getItem('users'))
-    console.log(id)
-    console.log(myUser.fullName)
-    const applyUserObj ={
-        fullName:myUser.fullName,
-        lastName:myUser.LastName,
-        clickId:myUser.userid,
-        email:myUser.email
+
+    if(temp==='applied' && tempId==id){
+        alert('alerady apply')
+    }else{
+        var myUser = JSON.parse(localStorage.getItem('users'))
+        console.log(id)
+        const mainUserRef = doc(db, "blogs", id);
+        const mainUserSnap = await getDoc(mainUserRef);
+    
+    if (mainUserSnap.exists()) {
+      console.log("Document data:", mainUserSnap.data());
+      var mainUserId=mainUserSnap.data().uid
+    } else {
+      // docSnap.data() will be undefined in this case
+      console.log("No such document!");
     }
-    const docRef = await addDoc(collection(db, "clickUser"), applyUserObj);
-      console.log("Document written with ID: ", docRef.id);
+    
+        console.log(myUser.fullName)
+        const applyUserObj ={
+            fullName:myUser.fullName,
+            lastName:myUser.LastName,
+            clickId:myUser.userid,
+            email:myUser.email,
+            mainUserId:mainUserId
+        }
+        const docRef = await addDoc(collection(db, "clickUser"), applyUserObj);
+          console.log("Document written with ID: ", docRef.id);
+    }
+    temp = 'applied'
+    tempId = id
+}
+
+
+
+function navToLog(){
+    window.location.replace('./login.html')
 }
 
 window.Apply = Apply
+window.navToLog = navToLog
+
+
