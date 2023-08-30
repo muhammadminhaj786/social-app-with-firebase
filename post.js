@@ -150,6 +150,8 @@ console.log(blogForm)
 
 
 async function addblog() {
+  // var postType = document.getElementById('selectInp').value
+  // console.log(postType)
 var filePost = document.getElementById('filePost').files[0]
 /** @type {any} */
 const metadata = {
@@ -207,7 +209,8 @@ const metadata = {
             timeStamp: serverTimestamp(),
             fullName: allUsers.fullName + " " + allUsers.LastName,
             filePost:downloadURL,
-            uid: allUsers.userid
+            uid: allUsers.userid,
+            // postType:postType
     
         }
         const docRef = await addDoc(collection(db, "blogs"), blogObj);
