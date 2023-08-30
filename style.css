@@ -441,10 +441,11 @@ select{
 }
 
 /* <-----------------Loader----------------> */
-#preloader{
+/* #preloader{
     height: 100vh;
     width: 100%;
     background: #000 url('./images/ZKZg.gif' ) no-repeat center ;
     position: fixed;
     z-index: 100;
 }
+ */
