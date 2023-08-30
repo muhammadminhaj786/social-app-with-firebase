@@ -10,6 +10,7 @@ body {
     font-weight: 400;
     color: #666666;
     /* background: #eaeff4; */
+    height: 100%;
 
 }
 
@@ -206,3 +207,244 @@ body {
     color: white;
 }
 
+
+/* <------------------ drpdown for acc---------------------> */
+
+.logo{
+    width: 200px;
+}
+.cart-img{
+    width: 140px;
+    height: 60px;
+}
+.cart-img img{
+    height: 100%;
+    width: 100%;
+}
+
+.nameandimg img{
+    border-radius: 50%;
+}
+#myimgid{
+    height: 90px;
+    border-radius: 10px soilid black;
+    border-radius: 50%;
+}
+#myimgid img{
+    border-radius: 50%;
+}
+.nameandimg p{
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+.nameandimg{
+    display: flex;
+    align-items: center;
+    margin: 5px 0 10px 0;
+}
+.dropdown{
+    width: 200px;
+    height: 300px;
+    box-shadow: 0 0 10px grey;
+    padding: 10px;
+    background-color: white;
+    display: none;
+    position: absolute;
+    top: 50px;
+}
+
+.dropdown ul li{
+    display: flex;
+    /* padding: 5btpx; */
+    /* margin-top: 5px; */
+    cursor: pointer;
+}
+
+.dropdown ul li:hover{
+    background-color: #c7dcff ;
+}
+
+
+.dropdown ul li i{
+    color: black;
+    font-size: 1.5vw;
+}
+
+.dropdown ul li p{
+    margin-left: 10px;
+    font-size: 1.3vw;
+}
+.blackdiv{
+    display: block;
+}
+.search{
+    margin-left: 50px;
+}
+/* <------------------ad---------> */
+.ad_img{
+    width: 80%;
+    height: 300px;
+    margin: 10px auto;
+    margin-top: 140px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+
+.ad_img img{
+    width: 100%;
+    height: 100%;
+}
+
+.hidden{
+    display: none;
+
+}
+.visible{
+    display: block;
+}
+.acc-btn{
+    height: 40px;
+    width: 140px;
+    background-color: blue;
+    border: none;
+    border-radius: 25px;
+    color: white;
+}
+
+/* <----------------end---------------------------------> */
+
+.mya{
+    color: blue !important;
+}
+
+
+/* <------------footer  start --------------> */
+/* .footer{
+    background-color: blue;
+    height: 260px;
+
+} */
+
+.main-body{
+    height: 250px;
+}
+
+/* <----------------my post -----------> */
+.inp{
+    width: 100%;
+    margin-left: 0%;
+}
+
+.blogForm{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.hidden{
+    display: none;
+}
+
+.btns a{
+    margin-left: 10px;
+}
+.show{
+    display: block;
+}
+.color{
+    color: black;
+}
+.card{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
+}
+.my-border{
+    border: 1px solid black;
+}
+
+.btn2{
+    background-color: blue;
+    color: white;
+    border: none;
+    width: 180px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.divImg{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+.divImg img{
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+}
+.divImg{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+.divImg img{
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+}
+.margin{
+    margin-left: 30px;
+}
+.postPic{
+    height: 400px;
+    width: 100%;
+    margin-left: 10px;
+}
+.postPic img{
+    height: 100%;
+    width: 90%;
+}
+
+.main-page{
+    
+    width: 100%;
+    margin-top: 10px;
+}
+.showCard{
+    width: 100%;
+    
+    /* border: 2px solid black; */
+}
+.myclr{
+    background-color: blue;
+}
+
+.footer{
+    background-color: blue;
+    height: 300px;
+    margin-top: 20px;
+}
+.myLi{
+    margin-top: 50px;
+    border: none;
+}
+
+select{
+    width: 100%;
+    height: 30px;
+    border-radius: 25px;
+}
+
+.showCard{
+    width: 60%;
+}
+
+/* <-----------------Loader----------------> */
+#preloader{
+    height: 100vh;
+    width: 100%;
+    background: #000 url('./images/ZKZg.gif' ) no-repeat center ;
+    position: fixed;
+    z-index: 100;
+}
